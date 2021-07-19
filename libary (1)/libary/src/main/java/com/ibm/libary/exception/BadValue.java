@@ -4,6 +4,6 @@ public class BadValue extends Exception {
 	
 
 	public void BadValue() {
-	       System.out.println("Must be positive! ");
+	       System.out.println("Must be positive!");
 	    }
 }

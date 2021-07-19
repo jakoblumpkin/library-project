@@ -7,8 +7,16 @@ public abstract class Book {
     private String title;
     private String author;
     private String notes;
-    
-    public abstract double calculateLateFee(int numDaysLate) throws BadValue;
+       
+    public Book(int isbn, String title, String author, String notes) {
+		super();
+		this.isbn = isbn;
+		this.title = title;
+		this.author = author;
+		this.notes = notes;
+	}
+
+	public abstract double calculateLateFee(int numDaysLate) throws BadValue;
     
     
 	public int getIsbn() {
