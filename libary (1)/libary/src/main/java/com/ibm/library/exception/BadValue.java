@@ -1,4 +1,4 @@
-package com.ibm.libary.exception;
+package com.ibm.library.exception;
 
 public class BadValue extends Exception {
 	

@@ -10,13 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.ibm.libary.exception.BadValue;
+import com.ibm.library.exception.BadValue;
 import com.ibm.library.model.Book;
 import com.ibm.library.repo.LibraryRepo;
 import com.ibm.library.repo.LibraryRepoImpl;
 
 @Service
-@Configuration
 public class LibraryServiceImpl implements LibraryService {
 
     private ArrayList<Book> books = new ArrayList<>();
@@ -24,10 +23,9 @@ public class LibraryServiceImpl implements LibraryService {
     @Autowired
     private LibraryRepo LibraryRepoImpl;
     
-    @Bean
+
 	public ArrayList<Book> getBooks() throws BadValue, IOException {
-		LibraryRepo reop1 = new LibraryRepoImpl();
-		ArrayList<Book> books = reop1.getBooks();
+		ArrayList<Book> books = LibraryRepoImpl.getBooks();
 		
 		System.out.println(books);
 		//get books form LibraryRepo

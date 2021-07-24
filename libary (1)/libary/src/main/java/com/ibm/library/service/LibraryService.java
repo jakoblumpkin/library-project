@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
-import com.ibm.libary.exception.BadValue;
+import com.ibm.library.exception.BadValue;
 import com.ibm.library.model.Book;
 
 @Component

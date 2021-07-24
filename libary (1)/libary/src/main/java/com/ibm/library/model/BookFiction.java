@@ -1,6 +1,6 @@
 package com.ibm.library.model;
 
-import com.ibm.libary.exception.BadValue;
+import com.ibm.library.exception.BadValue;
 
 public class BookFiction extends Book {
 	
