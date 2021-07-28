@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.ibm.library.exception.BadValue;
 import com.ibm.library.model.Book;
 import com.ibm.library.repo.LibraryRepo;
-import com.ibm.library.repo.LibraryRepoImpl;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
@@ -21,11 +20,11 @@ public class LibraryServiceImpl implements LibraryService {
     private ArrayList<Book> books = new ArrayList<>();
     
     @Autowired
-    private LibraryRepo LibraryRepoImpl;
+    private LibraryRepo Repo_connect;
     
 
 	public ArrayList<Book> getBooks() throws BadValue, IOException {
-		ArrayList<Book> books = LibraryRepoImpl.getBooks();
+		ArrayList<Book> books = Repo_connect.getBooks();
 		
 		System.out.println(books);
 		//get books form LibraryRepo
@@ -37,12 +36,24 @@ public class LibraryServiceImpl implements LibraryService {
                 
 				
 				//Calculate late fee
+				int numDaysLate;
 				int titleLength = i.getTitle().length();
-		    	if(titleLength % 2 != 0) {
-		    		i.calculateLateFee(-1);
-		    		i.setNotes("Must be positive!");
+		    	if(titleLength % 2 == 0) {
+		    		numDaysLate = -1 * titleLength;
 		    	} else {
-		    		i.setNotes("Fee is: " + i.calculateLateFee(titleLength));
+		    		//i.calculateLateFee(-1);
+		    	    numDaysLate = -1 * titleLength;
+		    	}
+		    	
+		    	try {
+		    		if(numDaysLate < 0) {
+		    			throw new BadValue();
+		    		} else {
+			    		double lateFee = i.calculateLateFee(numDaysLate);
+			    		i.setNotes("Fee is " + lateFee);
+		    		}
+		    	} catch(BadValue badValue) {
+		    		i.setNotes(badValue.getMessage());
 		    	}
 				
 			}
